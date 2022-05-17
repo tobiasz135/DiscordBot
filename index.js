@@ -122,7 +122,7 @@ http_io.on("connection", async function(httpsocket){
               //.setURL('https://thedrinkitgame.pl/')
               .setDescription('Szybko bo ktoś nam zaraz znowu zapierdoli')
               .setTimestamp()
-              .addFields({ name: 'Dostępna ilość', value: item["items_available"] })
+              .addFields({ name: 'Dostępna ilość', value: "" + item["items_available"] })
 
             if(item["display_name"] === "Starbucks Łódź Piotrkowska (Na koniec dnia)")
               exampleEmbed.setColor("#32a852")
