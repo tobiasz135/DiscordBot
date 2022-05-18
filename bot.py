@@ -29,7 +29,7 @@ while True:
         #print("response sent")
         str = '{}:{} response sent'.format(now.hour, now.minute)
         print(str)
-        sleep_time = 60 * 1 #check every 1 min
+        sleep_time = 60 * 0.5 #check every 1 min
     else:
         #print("Not the time yet! Sleeping...")
         str = '{}:{} is not the time yet! Sleeping...'.format(now.hour, now.minute)
