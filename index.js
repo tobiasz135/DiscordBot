@@ -89,7 +89,7 @@ setInterval(async () => {
       .setThumbnail('https://cdn.discordapp.com/attachments/796126423453663315/960122476040429568/DrinkIt_new.png')
       .setDescription('Gratuluję')
       .addFields(
-        { name: 'Response status', value: res.statusCode })
+        { name: 'Response status', value: res.statusCode.toString() })
       .setTimestamp()
       gamealive = true;
       channel.send({ embeds: [exampleEmbed] });
@@ -122,7 +122,7 @@ http_io.on("connection", async function(httpsocket){
               //.setURL('https://thedrinkitgame.pl/')
               .setDescription('Szybko bo ktoś nam zaraz znowu zapierdoli')
               .setTimestamp()
-              .addFields({ name: 'Dostępna ilość', value: "" + item["items_available"] })
+              .addFields({ name: 'Dostępna ilość', value: item["items_available"].toString() })
 
             if(item["display_name"] === "Starbucks Łódź Piotrkowska (Na koniec dnia)")
               exampleEmbed.setColor("#32a852")
