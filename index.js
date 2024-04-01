@@ -13,7 +13,7 @@ enabled = 1
 gamealive = true;
 
 
-const { Client, Intents, Modal, Channel, MessageEmbed } = require('discord.js');
+const { Client, Intents, Modal, Channel, MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 
 /*const exampleEmbed = new MessageEmbed()
 	.setColor('#0099ff')
@@ -124,12 +124,22 @@ http_io.on("connection", async function(httpsocket){
               .setTimestamp()
               .addFields({ name: 'Dostępna ilość', value: item["items_available"].toString() })
 
-            if(item["display_name"] === "Starbucks Łódź Piotrkowska (Na koniec dnia)")
+
+	    const row = new MessageActionRow()
+            .addComponents(
+                new MessageButton()
+                    .setLabel('Invite') // label of the button
+                    .setEmoji('➕') // emoji
+                    .setURL('https://stackoverflow.com') // URL of where the button leads the user
+                    .setStyle('Zarezerwuj') // style of the button
+            )
+
+            if(item["display_name"].includes("Starbucks Łódź Piotrkowska"))
               exampleEmbed.setColor("#32a852")
             else
               exampleEmbed.setColor("#96651a")
             
-            channel.send({ embeds: [exampleEmbed] });
+            channel.send({ embeds: [exampleEmbed]});
             //channel.send(item["display_name"] + " dostępny w TGTG!");
             //send_notification(item);
         }
