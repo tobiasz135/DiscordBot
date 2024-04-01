@@ -104,6 +104,8 @@ setInterval(async () => {
   req.end();
 },60 * 1000)
 
+let restaurantMap = [];
+
 http_io.on("connection", async function(httpsocket){
   const channel = await client.channels.fetch('976106571924897843');
   console.log("new user");
@@ -125,21 +127,17 @@ http_io.on("connection", async function(httpsocket){
               .addFields({ name: 'Dostępna ilość', value: item["items_available"].toString() })
 
 
-	    const row = new MessageActionRow()
-            .addComponents(
-                new MessageButton()
-                    .setLabel('Invite') // label of the button
-                    .setEmoji('➕') // emoji
-                    .setURL('https://stackoverflow.com') // URL of where the button leads the user
-                    .setStyle('Zarezerwuj') // style of the button
-            )
-
             if(item["display_name"].includes("Starbucks Łódź Piotrkowska"))
               exampleEmbed.setColor("#32a852")
             else
               exampleEmbed.setColor("#96651a")
             
-            channel.send({ embeds: [exampleEmbed]});
+            
+            if(restaurantMap[item["display_name"]] != item["items_available"]){
+              channel.send({ embeds: [exampleEmbed]});
+            }
+
+            restaurantMap[item["display_name"]] = item["items_available"];
             //channel.send(item["display_name"] + " dostępny w TGTG!");
             //send_notification(item);
         }
