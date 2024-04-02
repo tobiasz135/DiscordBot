@@ -116,7 +116,7 @@ http_io.on("connection", async function(httpsocket){
         //console.log(count);
         for(i = 0; i < count; i++){
           item = fromPython[i];
-          if(item["items_available"] != 0 && enabled){
+          if(item["items_available"] >= 0 && enabled){
             console.log(item["display_name"] + " available!");
             const exampleEmbed = new MessageEmbed()
               //.setColor('#0099ff')
@@ -132,7 +132,10 @@ http_io.on("connection", async function(httpsocket){
             else
               exampleEmbed.setColor("#96651a")
             
-            
+            if(item["items_available"] == 0){
+              exampleEmbed.setColor("#ff0000")
+              exampleEmbed.setDescription(`Paczki z ${item["display_name"]} już skończyły się!`)
+            }
             if(restaurantMap[item["display_name"]] != item["items_available"]){
               channel.send({ embeds: [exampleEmbed]});
             }
