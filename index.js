@@ -109,6 +109,12 @@ let restaurantMap = [];
 http_io.on("connection", async function(httpsocket){
   const channel = await client.channels.fetch('976106571924897843');
   console.log("new user");
+    httpsocket.on('python-reset-message', function(fromPython){
+      console.log("Triggered restaurant map reset");
+      Object.keys(restaurantMap).forEach(function(key) {
+        restaurantMap[key] = 0;
+      });
+    });
     httpsocket.on('python-message', function(fromPython){
         httpsocket.broadcast.emit('message', fromPython);
         //console.log(fromPython);

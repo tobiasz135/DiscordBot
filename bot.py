@@ -19,7 +19,9 @@ enabled = True
 
 while True:
     now = datetime.datetime.now()
-    if(now.hour >= 16 and now.hour < 22 and enabled):
+    if(now.hour == 15 and now.minute <= 30):
+        sio.emit('python-reset-message', 'reset')
+    elif(now.hour >= 16 and now.hour < 22 and enabled):
         try:
             print("Waiting for server")
             response = client.get_items()
@@ -30,7 +32,7 @@ while True:
         #print("response sent")
         str = '{}:{} response sent'.format(now.hour, now.minute)
         print(str)
-        sleep_time = 60 * 2 #check every 1 min
+        sleep_time = 60 * 1 #check every 1 min
     else:
         #print("Not the time yet! Sleeping...")
         str = '{}:{} is not the time yet! Sleeping...'.format(now.hour, now.minute)
